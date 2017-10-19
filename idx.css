@@ -1,0 +1,193 @@
+@charset "utf-8";
+/*
+ * idx.css
+ */
+
+.hidden {
+	display: none;
+}
+.show {
+	display: block;
+}
+
+/*
+ * --tags--
+ */
+h1::before {
+	content: "/ ";
+}
+h1::after {
+	content: " /";
+}
+h1 {
+	text-align: center;
+}
+h2 {
+	font-family: "Courier New", Monospace;
+	font-size: 12px;
+	color:gray;
+	line-height: 1.4em;
+	text-align: center;
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
+/*
+ * --menu--
+ */
+.menu-option {
+	font-family: "Courier New", Monospace;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	width: 50%;
+	margin-left: 25%;
+	margin-right: 25%;
+	text-align: center;
+	line-height: 2em;
+	border-radius: 5px;
+	background: black;
+	color: white;
+}
+.menu-option:active {
+	background: white;
+	color: black;
+}
+.menu-option.pinyin-test::before {
+	content: "あ -> ?";
+}
+.menu-option.symbol-test::before {
+	content: "A -> ?";
+	display: none; /* TODO */
+}
+.menu-option.typing-test::before {
+	content: "Typing Test";
+	display: none; /* TODO */
+}
+.menu-option.mylog::before {
+	content: "MyLog";
+	display: none; /* TODO */
+}
+
+/*
+ * --pinyin-tester--
+ */
+
+
+#pinyin_tester_pinyin, #pinyin_tester_nihongo {
+	line-height: 1.5em;
+	text-align: center;
+}
+
+#pinyin_tester_nihongo {
+	font-size: 48px;
+}
+
+.back-to-menu {
+	font-size: 32px;
+	text-align: center;
+	line-height: 25px;
+	border-radius: 25px;
+	margin: auto;
+	width: 25px;
+	padding: 20px;
+	background: #a33;
+	color:white;
+	margin-top: 50px;
+}
+
+.back-to-menu::before {
+	content: "\D7"
+}
+
+.back-to-menu:active {
+	background: white;
+	color: #a33;
+}
+
+/*
+ * --virtual-keyboard--
+ */
+
+.vkeyboard {
+  bottom: 0;
+}
+
+.vkeyboard-row {
+  height: 42px;
+  background: #ffe4c4;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 40px;
+  text-align: center;
+}
+
+.vkeyboard-row.row-0 {
+  width: 100%;
+  /* max-width: 300px; */
+}
+
+.vkeyboard-row.row-0 > .vkey {
+  width: 9%;
+  margin-right: 1%;
+}
+
+.vkeyboard-row.row-1, .vkeyboard-row.row-2 {
+  width: 90%;
+  /* max-width: 270px; */
+}
+
+.vkeyboard-row.row-1 >.vkey {
+  width: 10%;
+  margin-right: 1%;
+}
+
+.vkeyboard-row.row-2 > .vkey {
+  width: 10%;
+  margin-right: 1%;
+}
+
+.vkey {
+  font-size: 14px;
+  font-family: "Courier", Monospace;
+  background: gray;
+  color: white;
+  border-radius: 5px;
+  float: left;
+  height: 100%;
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: 0;
+} 
+
+.vkey::before {
+  content: attr(title);
+}
+
+.vkey.vkey-del::before {
+  font-size: 12px;
+  content: "\232B";
+}
+
+.vkey:active {
+	background: white;
+	color: black;
+}
+
+@keyframes green_shin {
+	from {
+		background: green;
+	} to {
+		background: gray;
+	}
+}
+
+.vkey-highlight {
+	/* background: green; */
+	width: 600px;
+	animation-name: green_shin;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+}
