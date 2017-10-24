@@ -1,68 +1,275 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width">
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="apple-mobile-web-app-status-bar-style" content="black">
-	<title>N50 | 帮你记五十音 | p01</title>
-	<link rel='shortcut icon' href='favicon.ico'>
-	<link rel='stylesheet' type='text/css' href='idx.css'>
-	<link rel='stylesheet' type='text/css' href='/index.css'>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<title>N50 | 帮你记五十音 | v0.0.1 </title>
+<link rel='shortcut icon' href='favicon.ico'>
+
+<style> <!-- style{ -->
+@charset "utf-8";
+/**
+ * --css--
+**/
+.hidden {
+	display: none;
+}
+.show {
+	display: block;
+}
+/*
+ * --tags--
+ */
+h1::before {
+	content: "/ ";
+}
+h1::after {
+	content: " /";
+}
+h1 {
+	text-align: center;
+}
+h2 {
+	font-family: "Courier New", Monospace;
+	font-size: 12px;
+	color:gray;
+	line-height: 1.4em;
+	text-align: center;
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
+/*
+ * --menu--
+ */
+.menu-option {
+	font-family: "Courier New", Monospace;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	width: 50%;
+	margin-left: 25%;
+	margin-right: 25%;
+	text-align: center;
+	line-height: 2em;
+	border-radius: 5px;
+	background: black;
+	color: white;
+}
+.menu-option:active {
+	background: white;
+	color: black;
+}
+.menu-option.pinyin-test::before {
+	content: "あ -> ?";
+}
+.menu-option.symbol-test::before {
+	content: "A -> ?";
+	display: none; /* TODO */
+}
+.menu-option.typing-test::before {
+	content: "Typing Test";
+	display: none; /* TODO */
+}
+.menu-option.mylog::before {
+	content: "MyLog";
+	display: none; /* TODO */
+}
+/*
+ * --pinyin-tester--
+ */
+#pinyin_tester_pinyin, #pinyin_tester_nihongo {
+	line-height: 1.5em;
+	text-align: center;
+}
+#pinyin_tester_nihongo {
+	font-size: 48px;
+}
+.back-to-menu {
+	font-size: 32px;
+	text-align: center;
+	line-height: 25px;
+	border-radius: 25px;
+	margin: auto;
+	width: 25px;
+	padding: 20px;
+	background: #a33;
+	color:white;
+	margin-top: 50px;
+}
+.back-to-menu::before {
+	content: "\D7"
+}
+.back-to-menu:active {
+	background: white;
+	color: #a33;
+}
+/*
+ * --virkb--
+ */
+.vkeyboard {
+  bottom: 0;
+}
+.vkeyboard-row {
+  height: 42px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 40px;
+  text-align: center;
+}
+.vkeyboard-row.row-0 {
+  width: 100%;
+  /* max-width: 300px; */
+}
+.vkeyboard-row.row-0 > .vkey {
+  width: 9%;
+  margin-right: 1%;
+}
+.vkeyboard-row.row-1, .vkeyboard-row.row-2 {
+  width: 90%;
+  /* max-width: 270px; */
+}
+.vkeyboard-row.row-1 >.vkey {
+  width: 10%;
+  margin-right: 1%;
+}
+.vkeyboard-row.row-2 > .vkey {
+  width: 10%;
+  margin-right: 1%;
+}
+.vkey {
+  font-size: 14px;
+  font-family: "Courier", Monospace;
+  background: gray;
+  color: white;
+  border-radius: 5px;
+  float: left;
+  height: 100%;
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: 0;
+} 
+.vkey.vkey-null {
+  visibility: hidden;
+}
+.vkey::before {
+  content: attr(title);
+}
+.vkey.vkey-del::before {
+  font-size: 12px;
+  content: "\232B";
+}
+.vkey:active {
+  background: white;
+  color: black;
+}
+.vkey-highlight {
+  /* background: green; */
+  width: 600px;
+  background: green;
+}
+
+<!-- }--end-style -->
+
+</style></head><body>
+
+  <h1>N50</h1>
+  <div class='menu'>
+  <h2>N50 can help you to remember Nihongo.</h2>
+    <div id='menu-option pinyin-test'></div>
+    <div id='menu-option symbol-test'></div>
+    <div id='menu-option typing-test'></div>
+    <div id='menu-option mylog'></div>
+  </div>
+  <div class='panel pinyin-tester'>
+    <div id='pinyin_tester_pinyin'><!--_--></div>
+    <div id='pinyin_tester_kana'><!-- あ --></div>
+    <!-- virkb { -->
+    <div id='vkeyboard'>
+      <div class='vkeyboard-row row-0'>
+        <div class='vkey' title='q'></div>
+        <div class='vkey' title='w'></div>
+        <div class='vkey' title='e'></div>
+        <div class='vkey' title='r'></div>
+        <div class='vkey' title='t'></div>
+        <div class='vkey' title='y'></div>
+        <div class='vkey' title='u'></div>
+        <div class='vkey' title='i'></div>
+        <div class='vkey' title='o'></div>
+        <div class='vkey' title='p'></div>
+      </div>
+      <div class='vkeyboard-row row-1'>
+        <div class='vkey' title='a'></div>
+        <div class='vkey' title='s'></div>
+        <div class='vkey' title='d'></div>
+        <div class='vkey' title='f'></div>
+        <div class='vkey' title='g'></div>
+        <div class='vkey' title='h'></div>
+        <div class='vkey' title='j'></div>
+        <div class='vkey' title='k'></div>
+        <div class='vkey' title='l'></div>
+      </div>
+      <div class='vkeyboard-row row-2'>
+        <div class='vkey vkey-null'></div>
+        <div class='vkey' title='z'></div>
+        <div class='vkey' title='x'></div>
+        <div class='vkey' title='c'></div>
+        <div class='vkey' title='v'></div>
+        <div class='vkey' title='b'></div>
+        <div class='vkey' title='n'></div>
+        <div class='vkey' title='m'></div>
+        <div class='vkey vkey-del' title='_'></div>
+      </div>
+    </div>
+    <!-- } end-virkb -->
+    <div class='back-to-menu'></div>
+  </div>
+<script>
+// --js--
 
 
-</head> <body>
+// --type--
 
-	<h1>N50</h1>
-	<div class='menu'>
-	<h2>N50 can help you to remember Nihongo.</h2>
-		<div id='menu-option pinyin-test'></div>
-		<div id='menu-option symbol-test'></div>
-		<div id='menu-option typing-test'></div>
-		<div id='menu-option mylog'></div>
-	</div>
-	<div class='pinyin-tester'>
-		<div id='pinyin_tester_pinyin'>_</div>
-		<div id='pinyin_tester_nihongo'>あ</div>
-		<div id='vkeyboard'>
-			<div class='vkeyboard-row row-0'>
-				<div class='vkey' title='q'></div>
-				<div class='vkey' title='w'></div>
-				<div class='vkey' title='e'></div>
-				<div class='vkey' title='r'></div>
-				<div class='vkey' title='t'></div>
-				<div class='vkey' title='y'></div>
-				<div class='vkey' title='u'></div>
-				<div class='vkey' title='i'></div>
-				<div class='vkey' title='o'></div>
-				<div class='vkey' title='p'></div>
-			</div>
-			<div class='vkeyboard-row row-1'>
-				<div class='vkey' title='a'></div>
-				<div class='vkey' title='s'></div>
-				<div class='vkey' title='d'></div>
-				<div class='vkey' title='f'></div>
-				<div class='vkey' title='g'></div>
-				<div class='vkey' title='h'></div>
-				<div class='vkey' title='j'></div>
-				<div class='vkey' title='k'></div>
-				<div class='vkey' title='l'></div>
-			</div>
-			<div class='vkeyboard-row row-2'>
-				<div class='vkey' id='vkey_hinter' title='?'></div>
-				<div class='vkey' title='z'></div>
-				<div class='vkey' title='x'></div>
-				<div class='vkey' title='c'></div>
-				<div class='vkey' title='v'></div>
-				<div class='vkey' title='b'></div>
-				<div class='vkey' title='n'></div>
-				<div class='vkey' title='m'></div>
-				<div class='vkey vkey-del' title='_'></div>
-			</div>
-		</div> <!-- end of virtual keyboard-->
-		<div class='back-to-menu'></div>
-	</div>
-<script type='text/javascript' src='n50.js'> </script>
-<div class='_index_copyright_'></div>
+function InputListener () {
+	this.virkb = undefined;
+	this.start();
+}
+
+InputListener.prototype.start = function () {
+}
+
+// el : HTMLElement
+// fn : function()
+InputListener.BindButtonEvent = function (el, fn) {
+}
+
+function DomOperater () {
+}
+
+function Storagekeeper () {
+}
+
+function Student () {
+}
+
+function KanaTrainer () {
+}
+
+function PinyinTrainer () {
+}
+
+function TypingTrainer () {
+}
+
+function N50 () {
+}
+
+</script>
+<div class='COPYRIGHT'></div>
 </body>
 </html>
