@@ -173,97 +173,89 @@ h2 {
 
 </style></head><body>
 <!-- ==html== -->
-
-  <h1>N50</h1>
-  <div class='menu'>
-  <h2>N50 can help you to remember Nihongo.</h2>
-    <div id='menu-option pinyin-test'></div>
-    <div id='menu-option symbol-test'></div>
-    <div id='menu-option typing-test'></div>
-    <div id='menu-option mylog'></div>
-  </div>
-  <div class='panel pinyin-tester'>
-    <div id='pinyin_tester_pinyin'><!--_--></div>
-    <div id='pinyin_tester_kana'><!-- あ --></div>
-<!-- virkb {
-    <div id='vkeyboard'>
-      <div class='vkeyboard-row row-0'>
-        <div class='vkey' title='q'></div>
-        <div class='vkey' title='w'></div>
-        <div class='vkey' title='e'></div>
-        <div class='vkey' title='r'></div>
-        <div class='vkey' title='t'></div>
-        <div class='vkey' title='y'></div>
-        <div class='vkey' title='u'></div>
-        <div class='vkey' title='i'></div>
-        <div class='vkey' title='o'></div>
-        <div class='vkey' title='p'></div>
-      </div>
-      <div class='vkeyboard-row row-1'>
-        <div class='vkey' title='a'></div>
-        <div class='vkey' title='s'></div>
-        <div class='vkey' title='d'></div>
-        <div class='vkey' title='f'></div>
-        <div class='vkey' title='g'></div>
-        <div class='vkey' title='h'></div>
-        <div class='vkey' title='j'></div>
-        <div class='vkey' title='k'></div>
-        <div class='vkey' title='l'></div>
-      </div>
-      <div class='vkeyboard-row row-2'>
-        <div class='vkey vkey-null'></div>
-        <div class='vkey' title='z'></div>
-        <div class='vkey' title='x'></div>
-        <div class='vkey' title='c'></div>
-        <div class='vkey' title='v'></div>
-        <div class='vkey' title='b'></div>
-        <div class='vkey' title='n'></div>
-        <div class='vkey' title='m'></div>
-        <div class='vkey vkey-del' title='_'></div>
-      </div>
-    </div>
-} end-virkb -->
-    <div class='back-to-menu'></div>
-  </div>
+<div class='panel main-panel'>
+	<div class='widget main-intro-widget'></div>
+	<div class='link from-main-to-romanji'></div>
+	<div class='link from-main-to-kana'></div>
+	<div class='link from-main-to-typing'></div>
+	<div class='link from-main-to-transcript'></div>
+</div>
+<div class='panel romanji-panel'>
+	<div class='widget romanji-buff-widget'></div>
+	<div class='widget romanji-givenkana-widget'></div>
+	<div class='widget keytouch romanji-keytouch-widget'></div>
+	<div class='widget romanji-wanthint-widget'></div>
+	<div class='widget romanji-combo-widget'></div>
+	<div class='link from-romanji-to-main'></div>
+</div>
 
 <!-- ==js==  -->
 <script>
 
-// --type--
+// --jp--
+var KATAKANA = [
+	// a i u e o
+];
+var HIRAGANA = [
+	// a i u e o
+];
+var ROMANJI = [
+	// a i u e o
+];
 
-function InputListener () {
-	this.virkb = undefined;
-	this.start();
+
+// --ui--
+
+// --ui--panel--
+function MainPanel(cl) {
+	this.el = document.getElementsByClassName(cl);
+
+	this.wdIntro = undefined;
+
+	this.lkRomanjiPanel = undefined;
+	this.lkKanaPanel = undefined;
+	this.lkTypingPanel = undefined;
+	this.lkTranscriptPanel = undefined;
+
+	this.handlers = {}
 }
 
-InputListener.prototype.start = function () {
+MainPanel.prototype.Handle = function (ev, fn) {
+}
+MainPanel.prototype.Post = function (/*...*/) {
+	// load
+	// exit
 }
 
-// el : HTMLElement
-// fn : function()
-InputListener.BindButtonEvent = function (el, fn) {
+function RomanjiPanel(cl) {
 }
 
-function DomOperater () {
+// --ui--widget--
+function Keytouch (cl) {
 }
 
-function Storagekeeper () {
+// --ui--link--
+function Linker(cl) {
+	var el = document.getElementsByClassName(cl);
+	try {
+		this.el = el[0];
+	} catch (e) {
+		throw (e);
+	}
 }
 
-function Student () {
+Linker.prototype.Link(fromPan, toPan) {
+	this.el.onclick = function () {
+		try {
+			fromPan.Post('exit');
+			toPan.Post('load');
+		} catch (e) {
+			throw (e);
+		}
+	}
 }
 
-function KanaTrainer () {
-}
-
-function PinyinTrainer () {
-}
-
-function TypingTrainer () {
-}
-
-function N50 () {
-}
+// --run--
 
 </script>
 <!-- } end js -->
