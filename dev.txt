@@ -102,6 +102,8 @@ Ui的动画效果，可以考虑做成一个。。。那叫啥来着？忘了。
 哎。
 
 2048里面的方块的移动动画，似乎全部都是由CSS控制的。难以置信。
+
+
 --sep-27-2017
 
 It seems that I need to redo all the stuff because I made
@@ -110,3 +112,6 @@ gone.  Can not came back.  Fxxk.
 
 I need to re-study how to use git, like all the commands, and some
 practices.
+
+
+--apr-06-2020
